@@ -1,0 +1,10 @@
+{
+  "webhook_url": "https://strainedly-untombed-tillie.ngrok-free.dev/webhook/dman",
+  "latest_version": "1.0.0",
+  "apk_url": "",
+  "invite_codes": {
+    "BLOGPILOT": "free",
+    "BLOG-PRO": "pro",
+    "BLOG-VIP": "vip"
+  }
+}
