@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlogPilot - 인증 완료</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0D1117;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .card {
+      text-align: center;
+      padding: 40px 32px;
+    }
+    .icon {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, #1A73E8, #0F52BA);
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 32px;
+    }
+    .title {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.6;
+    }
+    .code-box {
+      margin-top: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      word-break: break-all;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">✅</div>
+    <div class="title">인증 완료</div>
+    <div class="desc">앱으로 돌아가세요.<br>이 창은 닫아도 됩니다.</div>
+    <div class="code-box" id="codeBox"></div>
+  </div>
+
+  <script>
+    // URL에서 code 파라미터 추출
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const error = params.get('error');
+
+    if (error) {
+      document.querySelector('.icon').textContent = '❌';
+      document.querySelector('.title').textContent = '인증 실패';
+      document.querySelector('.desc').textContent = '다시 시도해주세요.';
+    } else if (code) {
+      // 앱이 WebView URL 변화를 감지해서 처리함
+      // code는 URL에 그대로 있으면 됨
+      const box = document.getElementById('codeBox');
+      box.style.display = 'block';
+      box.textContent = 'code: ' + code.substring(0, 20) + '...';
+    }
+  </script>
+</body>
+</html>
