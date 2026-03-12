@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BlogPilot - 인증 완료</title>
+  <title>The CamCode - 인증 완료</title>
   <style>
+    /* 기존 스타일 그대로 유지 */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: #0D1117;
@@ -15,10 +16,7 @@
       justify-content: center;
       min-height: 100vh;
     }
-    .card {
-      text-align: center;
-      padding: 40px 32px;
-    }
+    .card { text-align: center; padding: 40px 32px; }
     .icon {
       width: 72px; height: 72px;
       background: linear-gradient(135deg, #00C896, #0066FF);
@@ -27,16 +25,8 @@
       margin: 0 auto 24px;
       font-size: 32px;
     }
-    .title {
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-    .desc {
-      font-size: 14px;
-      color: rgba(255,255,255,0.4);
-      line-height: 1.6;
-    }
+    .title { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+    .desc { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.6; }
     .btn {
       margin-top: 24px;
       display: inline-block;
@@ -57,14 +47,13 @@
   <div class="card">
     <div class="icon" id="icon">⏳</div>
     <div class="title" id="title">인증 처리 중...</div>
-    <div class="desc" id="desc">잠시만 기다려주세요.</div>
+    <div class="desc" id="desc">The CamCode 앱으로 연결 중입니다.</div>
     <button class="btn" id="btn" style="display:none" onclick="openApp()">앱으로 돌아가기</button>
   </div>
 
   <script>
-    // ── 딥링크 설정 (App Link 전환 시 여기만 수정) ──────────────────────
-    const DEEP_LINK_SCHEME = 'blogpilot://callback';
-    // App Link로 전환 시: const DEEP_LINK_SCHEME = 'https://blogpilot.kr/callback';
+    // ── 여기를 CamCode용으로 수정했습니다! ──────────────────────
+    const DEEP_LINK_SCHEME = 'camcode://callback'; 
 
     const params = new URLSearchParams(window.location.search);
     const code   = params.get('code');
@@ -89,12 +78,10 @@
     } else if (code) {
       iconEl.textContent  = '✅';
       titleEl.textContent = '인증 완료';
-      descEl.textContent  = '앱으로 자동 전환됩니다...';
+      descEl.textContent  = 'The CamCode 앱으로 자동 전환됩니다...';
 
-      // 자동 딥링크 호출 (0.5초 후)
       setTimeout(() => {
         openApp();
-        // 앱이 안열리면 수동 버튼 표시
         setTimeout(() => {
           descEl.textContent = '자동 전환이 안되면 아래 버튼을 눌러주세요.';
           btnEl.style.display = 'inline-block';
